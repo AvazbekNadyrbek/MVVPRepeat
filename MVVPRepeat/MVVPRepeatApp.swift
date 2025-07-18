@@ -10,23 +10,23 @@ import SwiftUI
 @main
 struct MVVPRepeatApp: App {
     
-    @StateObject var appviewModel = AppViewModel()
-    
+    @State private var loginViewModel = LoginViewModel()
+
     var body: some Scene {
         WindowGroup {
-            if appviewModel.isOnboarding {
+            if loginViewModel.isOnboarding {
                 Onboarding()
-                .environmentObject(appviewModel)}
-            else {
-                NavigationStack {
-                    if appviewModel.isLogin {
-                        ContentView()
-                            .environmentObject(appviewModel)
-                    }
+                    .environment(loginViewModel)
+            } else {
+                if loginViewModel.isLogged {
+                    ContentView()
+                        .environment(loginViewModel)
+                } else {
+                    LoginView()
+                        .environment(loginViewModel)
                 }
             }
         }
         
     }
 }
-

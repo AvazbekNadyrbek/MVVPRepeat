@@ -8,17 +8,16 @@
 import Foundation
 import SwiftUI
 
-@MainActor
-class AppViewModel: ObservableObject {
+@Observable class AppViewModel {
     
-    @Published var isLogin: Bool = true
-    @Published  var isOnboarding: Bool = true
+    var isLogin: Bool = true
+    var isOnboarding: Bool = true
     func login() {
         isLogin = true
     }
     
     func logout() {
-        isLogin = false
+        isLogin = true
         isOnboarding = true
     }
 }

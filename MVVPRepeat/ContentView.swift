@@ -9,33 +9,36 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @EnvironmentObject var viewModel: AppViewModel
+    @Environment(LoginViewModel.self) var loginViewModel
     
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-            Button {
-                
-            } label: {
-                Text("Press me")
+            VStack {
+                Text("Welcome,")
+                Text(loginViewModel.username)
             }
-            
-            NavigationLink {
-                SecondView()
-                    .environmentObject(viewModel )
-                    
+            .font(.title)
+            Spacer()
+            Button {
+                loginViewModel.isLogged.toggle()
             } label: {
-                Text("Second View")
+                Text("Log out")
+                    .font(.headline)
+                    .frame(height: 55)
+                    .frame(maxWidth: .infinity)
+                    .background(Color.blue)
+                    .cornerRadius(10)
             }
 
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding()
+        .background(Color.black)
+        .foregroundColor(.white)
     }
 }
 
 #Preview {
     ContentView()
+        .environment(LoginViewModel())
 }

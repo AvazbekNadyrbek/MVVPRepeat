@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SecondView: View {
     
-    @EnvironmentObject var appViewModel: AppViewModel
+    @Environment(AppViewModel.self) var appViewModel: AppViewModel
     
     var body: some View {
         Text("SecondView")
@@ -24,5 +24,5 @@ struct SecondView: View {
 
 #Preview  {
     SecondView()
-        .environmentObject(AppViewModel())
+        .environment(AppViewModel())
 }
