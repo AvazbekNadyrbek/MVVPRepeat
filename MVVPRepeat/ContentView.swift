@@ -21,6 +21,8 @@ struct ContentView: View {
             Spacer()
             Button {
                 loginViewModel.isLogged.toggle()
+                loginViewModel.username = ""
+                loginViewModel.password = ""
             } label: {
                 Text("Log out")
                     .font(.headline)
